@@ -16,3 +16,11 @@ for target in ${targets[@]}; do
     fi
     ln -siv "$this_dir/dotfiles/$target" "~/$target"
 done
+
+# nvim config
+nvim_dir=".config/nvim"
+if [ -d ~/$nvim_dir ]; then
+    echo "~/$nvim_dir is exists."
+    mv "~/$nvim_dir" "~/$nvim_dir.bak"
+fi
+ln -siv "$this_dir/dotfiles/$nvim_dir" "~/$nvim_dir"

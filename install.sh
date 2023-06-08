@@ -16,4 +16,17 @@ then
     sudo apt install -y xclip
 fi
 
+if ! command -v vim &> /dev/null
+then
+    echo "install vim"
+    sudo apt install -y vim
+fi
+
+if ! command -v nvim &> /dev/null
+    curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+    chmod +x nvim.appimage
+    ./nvim.appimage --appimage-extract
+    ln -s /squashfs-root/AppRun /usr/bin/nvim
+fi
+
 ./link.sh

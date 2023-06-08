@@ -18,6 +18,8 @@ alias mkdir='mkdir -p'
 
 alias dc='docker compose'
 alias dd='docker'
+alias t='gnome-terminal'
+alias x='exit'
 
 function mk-exec-file() {
   if [ $# -ne 1 ]; then
