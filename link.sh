@@ -1,5 +1,6 @@
 #/bin/bash -eu
-cd $0
+cd $(dirname $0)
+source ./util.sh
 this_dir=$(pwd)
 
 targets=(
@@ -9,18 +10,26 @@ targets=(
 )
 
 for target in ${targets[@]}; do
-    # echo "$this_dir/dotfiles/$target"
-    if [ -e ~/$target ]; then
-        echo "~/$target is exists."
-        mv "~/$target" "~/$target.bak"
-    fi
-    ln -siv "$this_dir/dotfiles/$target" "~/$target"
+    src=$this_dir/dotfiles/$target
+    dst=$HOME/$target
+    link_data $src $dst
 done
 
 # nvim config
 nvim_dir=".config/nvim"
-if [ -d ~/$nvim_dir ]; then
-    echo "~/$nvim_dir is exists."
-    mv "~/$nvim_dir" "~/$nvim_dir.bak"
+src="$this_dir/dotfiles/$nvim_dir"
+dst=$HOME/$nvim_dir
+
+if [ -L $dst ]; then
+    echo "$dst is exists.(Link)"
+    unlink $dst
+elif [ -d $dst ]; then
+    echo "$dst is exists.(Dir)"
+    mv "$dst" "${dst}.bak"
 fi
-ln -siv "$this_dir/dotfiles/$nvim_dir" "~/$nvim_dir"
+
+if [ ! -d "$HOME/.config" ]; then
+    mkdir "$HOME/.config"
+fi
+
+ln -siv "$src" "$dst"
