@@ -1,6 +1,5 @@
-#/bin/bash -eu
-cd $(dirname $0)
-source ./util.sh
+#! /bin/bash -eu
+cd "$0"
 this_dir=$(pwd)
 sudo apt-get update
 
@@ -27,8 +26,6 @@ if ! command -v nvim &> /dev/null
 then
     curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
     chmod +x nvim.appimage
-    src=$this_dir/squashfs-root/AppRun
-    dst=/usr/bin/nvim
     ./nvim.appimage --appimage-extract
     link_data $src $dst
 fi
