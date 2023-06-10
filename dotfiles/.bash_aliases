@@ -162,3 +162,8 @@ fcd() {
                   -o -type d -print 2> /dev/null | fzf +m --preview 'ls -l {}') &&
   cd "$dir"
 }
+
+my() {
+  source ~/.mysqlrc 
+  mysql -u $USER --password=$PASSWORD -h $HOST -P $PORT ${1:-ppr}
+}
