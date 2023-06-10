@@ -1,5 +1,5 @@
 #! /bin/bash -eu
-cd "$0"
+cd $(dirname $0)
 this_dir=$(pwd)
 sudo apt-get update
 
