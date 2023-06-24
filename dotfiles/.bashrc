@@ -15,6 +15,7 @@ shopt -s histappend
 HISTSIZE=10000
 HISTFILESIZE=20000
 
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -103,4 +104,11 @@ if ! shopt -oq posix; then
   elif [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
   fi
+fi
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+. "$HOME/.cargo/env"
+
+if [ $(service docker status | awk '{print $4}') = "not" ]; then
+  sudo service docker start > /dev/null
 fi
