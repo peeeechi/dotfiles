@@ -104,27 +104,12 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-# for pyenv
-export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init - zsh --no-rehash)"
-eval "$(pyenv virtualenv-init -)"
 
 ALL_PROXY=http://proxy9.intra.paltac.co.jp:8080/
 all_proxy=http://proxy9.intra.paltac.co.jp:8080/
 
 
-source ~/catkin_ws/src/botamochi/tools/git/setup.bash
-export PATH="${HOME}/catkin_ws/src/botamochi/tools/format:${PATH}"
-export PATH="${HOME}/catkin_ws/src/botamochi/tools/git:${PATH}"
-export PATH="${HOME}/catkin_ws/src/botamochi/tools/lint:${PATH}"
 
-
-export PATH=$PATH:/usr/local/bin/blender-3.4.1-linux-x64
-source /home/gyoukaku/catkin_ws/src/botamochi/tools/setup.bash
-source /home/gyoukaku/catkin_ws/src/botamochi/tools/git/setup.bash
-
-
-source $HOME/.cargo/env
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
